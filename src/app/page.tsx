@@ -1,3 +1,4 @@
+import { FeatureStrip } from "@/components/home/FeatureStrip";
 import { Hero } from "@/components/home/Hero";
 
 export default function Home() {
@@ -5,9 +6,14 @@ export default function Home() {
     <main>
       <Hero />
 
+      <FeatureStrip />
+
+      {/* Temporary placeholder for Phase 6 */}
       <section
-        id="experience"
-        className="min-h-screen bg-background"
+        className="
+          min-h-[40vh]
+          bg-background
+        "
       />
     </main>
   );
