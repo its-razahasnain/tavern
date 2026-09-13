@@ -1,48 +1,116 @@
 @import "tailwindcss";
 
+/* =========================================================
+   TAVERN DESIGN TOKENS
+   ========================================================= */
+
 :root {
+  /* -------------------------------------------------------
+     Core Colors
+     ------------------------------------------------------- */
+
   --background: #0b0a08;
   --background-soft: #100e0b;
+
   --surface: #14120f;
   --surface-soft: #1a1713;
+  --surface-light: #211d18;
 
   --foreground: #f4f0e8;
   --foreground-muted: #aaa39a;
+  --foreground-subtle: #777168;
+
+  /* -------------------------------------------------------
+     Tavern Gold
+     ------------------------------------------------------- */
 
   --gold: #c9a45c;
   --gold-light: #e2c47c;
   --gold-dark: #8e6e35;
 
-  --border: rgba(201, 164, 92, 0.2);
-  --border-light: rgba(244, 240, 232, 0.12);
+  /* -------------------------------------------------------
+     Borders
+     ------------------------------------------------------- */
 
-  --radius: 0.5rem;
+  --border: rgba(201, 164, 92, 0.2);
+  --border-strong: rgba(201, 164, 92, 0.4);
+  --border-light: rgba(244, 240, 232, 0.1);
+
+  /* -------------------------------------------------------
+     Typography
+     ------------------------------------------------------- */
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Manrope", Arial, sans-serif;
+
+  /* -------------------------------------------------------
+     Layout
+     ------------------------------------------------------- */
+
+  --container-width: 1400px;
+
+  /* -------------------------------------------------------
+     Radius
+     ------------------------------------------------------- */
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* -------------------------------------------------------
+     Shadows
+     ------------------------------------------------------- */
+
+  --shadow-soft:
+    0 20px 60px rgba(0, 0, 0, 0.25);
+
+  --shadow-deep:
+    0 30px 100px rgba(0, 0, 0, 0.45);
 }
+
+/* =========================================================
+   TAILWIND THEME
+   ========================================================= */
 
 @theme inline {
   --color-background: var(--background);
   --color-background-soft: var(--background-soft);
+
   --color-surface: var(--surface);
   --color-surface-soft: var(--surface-soft);
+  --color-surface-light: var(--surface-light);
 
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
 
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);
 
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-border-light: var(--border-light);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
-* {
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
   background: var(--background);
+  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -52,20 +120,22 @@ body {
   background:
     radial-gradient(
       circle at 50% 0%,
-      rgba(201, 164, 92, 0.035),
-      transparent 35%
+      rgba(201, 164, 92, 0.045),
+      transparent 32%
     ),
     var(--background);
 
   color: var(--foreground);
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: var(--font-body);
+
+  font-size: 16px;
+  line-height: 1.6;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -73,22 +143,31 @@ body {
   color: var(--background);
 }
 
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button {
-  font: inherit;
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
 }
 
 img {
-  max-width: 100%;
+  height: auto;
 }
 
 h1,
@@ -98,42 +177,114 @@ h4,
 h5,
 h6 {
   margin: 0;
+
+  font-family: var(--font-display);
+
+  font-weight: 500;
+
+  text-wrap: balance;
 }
 
 p {
   margin: 0;
+
+  text-wrap: pretty;
 }
 
-.container-tavern {
-  width: min(100% - 40px, 1400px);
-  margin-inline: auto;
+/* =========================================================
+   TAVERN TYPOGRAPHY
+   ========================================================= */
+
+.font-display {
+  font-family: var(--font-display);
 }
 
-@media (max-width: 768px) {
-  .container-tavern {
-    width: min(100% - 32px, 1400px);
-  }
-}
-
-.gold-text {
-  color: var(--gold);
-}
-
-.serif {
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+.font-body {
+  font-family: var(--font-body);
 }
 
 .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
   color: var(--gold);
 
+  font-family: var(--font-body);
+
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 600;
+
+  line-height: 1;
 
   letter-spacing: 0.28em;
+
   text-transform: uppercase;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  display: block;
+
+  width: 34px;
+  height: 1px;
+
+  flex-shrink: 0;
+
+  background: var(--gold);
+
+  content: "";
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container-tavern {
+  width: min(
+    calc(100% - 80px),
+    var(--container-width)
+  );
+
+  margin-inline: auto;
+}
+
+@media (max-width: 1024px) {
+  .container-tavern {
+    width: min(
+      calc(100% - 64px),
+      var(--container-width)
+    );
+  }
+}
+
+@media (max-width: 640px) {
+  .container-tavern {
+    width: min(
+      calc(100% - 40px),
+      var(--container-width)
+    );
+  }
+}
+
+/* =========================================================
+   SECTION SPACING
+   ========================================================= */
+
+.section-padding {
+  padding-block: clamp(5rem, 9vw, 9rem);
+}
+
+.section-padding-sm {
+  padding-block: clamp(3.5rem, 6vw, 6rem);
+}
+
+/* =========================================================
+   GOLD ELEMENTS
+   ========================================================= */
+
+.gold-text {
+  color: var(--gold);
 }
 
 .gold-line {
@@ -151,6 +302,10 @@ p {
   border: 1px solid var(--border);
 }
 
+/* =========================================================
+   TEXTURES
+   ========================================================= */
+
 .noise {
   position: relative;
 }
@@ -158,6 +313,8 @@ p {
 .noise::after {
   position: absolute;
   inset: 0;
+
+  z-index: 20;
 
   pointer-events: none;
 
@@ -169,6 +326,85 @@ p {
 
   mix-blend-mode: soft-light;
 }
+
+/* =========================================================
+   IMAGE TREATMENTS
+   ========================================================= */
+
+.image-darken {
+  position: relative;
+}
+
+.image-darken::after {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11, 10, 8, 0.72) 0%,
+      rgba(11, 10, 8, 0.2) 55%,
+      rgba(11, 10, 8, 0.08) 100%
+    );
+
+  content: "";
+}
+
+.image-vignette {
+  position: relative;
+}
+
+.image-vignette::after {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 35%,
+      rgba(0, 0, 0, 0.48) 100%
+    );
+
+  content: "";
+}
+
+/* =========================================================
+   FOCUS STATES
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #332c22;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   html {
