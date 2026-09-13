@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { bodyFont, displayFont } from "@/lib/font";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 import "./globals.css";
 
@@ -13,22 +14,14 @@ export const metadata: Metadata = {
   },
   description:
     "Tavern is a warm, atmospheric restaurant serving thoughtful food, crafted drinks, and memorable experiences.",
-  keywords: [
-    "Tavern",
-    "restaurant",
-    "fine dining",
-    "food",
-    "drinks",
-    "dinner",
-  ],
+  keywords: ["Tavern", "restaurant", "fine dining", "food", "drinks", "dinner"],
   applicationName: "Tavern",
   icons: {
     icon: "/icon.svg",
   },
   openGraph: {
     title: "Tavern — Good Food. Great Vibes. Together.",
-    description:
-      "Fresh ingredients, bold flavors, and a welcoming atmosphere.",
+    description: "Fresh ingredients, bold flavors, and a welcoming atmosphere.",
     type: "website",
     siteName: "Tavern",
   },
@@ -44,14 +37,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${displayFont.variable} ${bodyFont.variable}`}
-    >
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
       <body>
         <Navbar />
 
-        {children}
+        <PageTransition>{children}</PageTransition>
 
         <Footer />
       </body>
