@@ -1,5 +1,6 @@
 import { FeatureStrip } from "@/components/home/FeatureStrip";
 import { Hero } from "@/components/home/Hero";
+import { MenuPreview } from "@/components/home/MenuPreview";
 
 export default function Home() {
   return (
@@ -8,13 +9,10 @@ export default function Home() {
 
       <FeatureStrip />
 
-      {/* Temporary placeholder for Phase 6 */}
-      <section
-        className="
-          min-h-[40vh]
-          bg-background
-        "
-      />
+      <MenuPreview />
+
+      {/* Temporary placeholder for Phase 7 */}
+      <section className="min-h-[40vh] bg-background" />
     </main>
   );
 }
