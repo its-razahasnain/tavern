@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { bodyFont, displayFont } from "@/lib/font";
 
@@ -10,10 +11,8 @@ export const metadata: Metadata = {
     default: "Tavern — Good Food. Great Vibes. Together.",
     template: "%s — Tavern",
   },
-
   description:
     "Tavern is a warm, atmospheric restaurant serving thoughtful food, crafted drinks, and memorable experiences.",
-
   keywords: [
     "Tavern",
     "restaurant",
@@ -22,13 +21,10 @@ export const metadata: Metadata = {
     "drinks",
     "dinner",
   ],
-
   applicationName: "Tavern",
-
   icons: {
     icon: "/icon.svg",
   },
-
   openGraph: {
     title: "Tavern — Good Food. Great Vibes. Together.",
     description:
@@ -36,7 +32,6 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Tavern",
   },
-
   robots: {
     index: true,
     follow: true,
@@ -57,6 +52,8 @@ export default function RootLayout({
         <Navbar />
 
         {children}
+
+        <Footer />
       </body>
     </html>
   );

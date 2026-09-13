@@ -23,8 +23,6 @@ export default function Home() {
 
       <ReservationCTA />
 
-      {/* Temporary placeholder for Phase 11 */}
-      <section className="min-h-[40vh] bg-background" />
     </main>
   );
 }
