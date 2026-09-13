@@ -1,3 +1,4 @@
+import { AboutSection } from "@/components/home/AboutSection";
 import { FeatureStrip } from "@/components/home/FeatureStrip";
 import { Hero } from "@/components/home/Hero";
 import { MenuPreview } from "@/components/home/MenuPreview";
@@ -11,7 +12,9 @@ export default function Home() {
 
       <MenuPreview />
 
-      {/* Temporary placeholder for Phase 7 */}
+      <AboutSection />
+
+      {/* Temporary placeholder for Phase 8 */}
       <section className="min-h-[40vh] bg-background" />
     </main>
   );
