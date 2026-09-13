@@ -1,0 +1,37 @@
+<svg
+  width="420"
+  height="150"
+  viewBox="0 0 420 150"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Tavern</title>
+  <desc id="desc">Tavern restaurant logo</desc>
+
+  <g fill="none" stroke="#C9A45C" stroke-width="2">
+    <path d="M65 105H180" />
+    <path d="M240 105H355" />
+  </g>
+
+  <g
+    fill="#C9A45C"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="58"
+    letter-spacing="8"
+  >
+    <text x="210" y="82" text-anchor="middle">
+      TAVERN
+    </text>
+  </g>
+
+  <g
+    fill="none"
+    stroke="#C9A45C"
+    stroke-width="2"
+  >
+    <path d="M204 105h12" />
+    <path d="M210 99v12" />
+    <circle cx="210" cy="105" r="5" />
+  </g>
+</svg>
