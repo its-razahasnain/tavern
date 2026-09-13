@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Navbar } from "@/components/layout/Navbar";
 import { bodyFont, displayFont } from "@/lib/font";
 
 import "./globals.css";
@@ -52,7 +53,11 @@ export default function RootLayout({
       lang="en"
       className={`${displayFont.variable} ${bodyFont.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <Navbar />
+
+        {children}
+      </body>
     </html>
   );
 }
