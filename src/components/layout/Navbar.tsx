@@ -122,6 +122,7 @@ export function Navbar() {
                 menuOpen ? "Close navigation menu" : "Open navigation menu"
               }
               aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
               onClick={() => setMenuOpen((open) => !open)}
               className="
                 relative

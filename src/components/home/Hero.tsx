@@ -51,7 +51,7 @@ export function Hero() {
         >
           <Image
             src="/images/hero/tavern-hero.webp"
-            alt="Warm and atmospheric interior of Tavern"
+            alt="Warm, atmospheric interior of Tavern with a softly lit bar and dining area"
             fill
             priority
             quality={90}

@@ -1,17 +1,11 @@
 import Link from "next/link";
-import type {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-} from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
 import { ArrowUpRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-type ButtonVariant =
-  | "primary"
-  | "outline"
-  | "ghost";
+type ButtonVariant = "primary" | "outline" | "ghost";
 
 interface SharedProps {
   children: React.ReactNode;
@@ -36,7 +30,7 @@ const variants: Record<ButtonVariant, string> = {
     "bg-gold",
     "text-background",
     "hover:border-gold-light",
-    "hover:bg-gold-light"
+    "hover:bg-gold-light",
   ),
 
   outline: cn(
@@ -44,7 +38,7 @@ const variants: Record<ButtonVariant, string> = {
     "bg-transparent",
     "text-foreground",
     "hover:bg-gold",
-    "hover:text-background"
+    "hover:text-background",
   ),
 
   ghost: cn(
@@ -52,7 +46,7 @@ const variants: Record<ButtonVariant, string> = {
     "bg-transparent",
     "text-foreground",
     "hover:border-gold",
-    "hover:text-gold"
+    "hover:text-gold",
   ),
 };
 
@@ -75,12 +69,14 @@ export function Button(props: ButtonProps) {
     "uppercase",
     "transition-all duration-300",
     "focus-visible:outline-none",
+    "focus-visible:outline-none",
     "focus-visible:ring-2",
     "focus-visible:ring-gold-light",
     "focus-visible:ring-offset-2",
     "focus-visible:ring-offset-background",
+    "focus-visible:ring-offset-[3px]",
     variants[variant],
-    className
+    className,
   );
 
   const arrow = showArrow ? (

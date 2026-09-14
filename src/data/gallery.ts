@@ -9,7 +9,7 @@ export const galleryItems: GalleryItem[] = [
   {
     id: "gallery-01",
     image: "/images/gallery/tavern-gallery-01.webp",
-    alt: "Warm atmospheric interior of Tavern",
+    alt:"Warmly lit Tavern dining room with wooden tables and ambient lighting",
     size: "large",
   },
   {

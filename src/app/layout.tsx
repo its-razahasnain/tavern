@@ -94,15 +94,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${displayFont.variable} ${bodyFont.variable}`}
-    >
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
       <body>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+
         <Navbar />
 
         <PageTransition>
-          {children}
+          <div id="main-content">{children}</div>
         </PageTransition>
 
         <Footer />
