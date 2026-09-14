@@ -7,7 +7,7 @@ import { bodyFont, displayFont } from "@/lib/font";
 
 import "./globals.css";
 
-const siteUrl = "https://tavern.example.com";
+const siteUrl = "https://tavern-virid.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

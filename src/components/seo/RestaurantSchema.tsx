@@ -10,15 +10,9 @@ export function RestaurantSchema() {
     description:
       "Tavern is a warm, atmospheric restaurant serving thoughtful food, crafted drinks, and memorable experiences.",
 
-    image: [
-      "/images/hero/tavern-hero.webp",
-      "/images/about/tavern-about.webp",
-    ],
+    image: ["/images/hero/tavern-hero.webp", "/images/about/tavern-about.webp"],
 
-    servesCuisine: [
-      "International",
-      "Contemporary",
-    ],
+    servesCuisine: ["International", "Contemporary"],
 
     priceRange: "$$",
 
@@ -32,12 +26,9 @@ export function RestaurantSchema() {
     telephone: siteConfig.contact.phone,
     email: siteConfig.contact.email,
 
-    url: "https://tavern.example.com",
+    url: "https://tavern-virid.vercel.app",
 
-    sameAs: [
-      siteConfig.social.instagram,
-      siteConfig.social.facebook,
-    ],
+    sameAs: [siteConfig.social.instagram, siteConfig.social.facebook],
 
     openingHoursSpecification: [
       {
