@@ -1,350 +1,167 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+import { aboutContent } from "@/data/about";
+import { Reveal } from "@/components/motion/Reveal";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GoldDivider } from "@/components/ui/GoldDivider";
-import { aboutContent } from "@/data/about";
 
 const philosophy = [
   {
     number: "01",
     title: "Good Food",
     description:
-      "We believe great food starts with good ingredients, thoughtful cooking, and dishes that don't need to shout to be remembered.",
+      "Fresh ingredients, thoughtful cooking, and dishes that never need to shout for attention.",
   },
   {
     number: "02",
     title: "Great Vibes",
     description:
-      "Warm light, good music, comfortable corners, and an atmosphere that makes staying for one more drink feel like the obvious choice.",
+      "Warm light, good music, crafted drinks, and a room that makes staying awhile feel natural.",
   },
   {
     number: "03",
     title: "Good Company",
     description:
-      "Tavern was made for people. Long conversations, shared plates, celebrations, first dates, old friends, and new memories.",
+      "Because the best meals are rarely about the food alone. They are about who is sitting across the table.",
   },
 ];
 
 export function AboutPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main>
       {/* Hero */}
       <section
-        className="
-          relative overflow-hidden
-          border-b border-border
-          pt-36 pb-20
-          sm:pt-40 sm:pb-24
-          lg:pt-48 lg:pb-32
-        "
+        id="top"
+        className="relative overflow-hidden border-b border-border pt-32 pb-24 sm:pt-40 sm:pb-28 lg:pt-48 lg:pb-36"
       >
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none absolute
-            right-[-10%] top-[-20%]
-            size-[600px]
-            rounded-full
-            bg-gold/[0.045]
-            blur-[140px]
-          "
-        />
-
         <Container>
-          <div className="relative max-w-6xl">
-            <div className="eyebrow">
-              {aboutContent.eyebrow}
-            </div>
+          <Reveal>
+            <div className="max-w-5xl">
+              <div className="eyebrow mb-7">
+                {aboutContent.eyebrow}
+              </div>
 
-            <h1
-              className="
-                mt-7
-                max-w-5xl
-                font-display
-                text-6xl leading-[0.88]
-                tracking-[-0.04em]
-                sm:text-7xl
-                md:text-8xl
-                lg:text-[9rem]
-              "
-            >
-              {aboutContent.title}
-              <br />
-              <span className="italic text-gold">
-                {aboutContent.titleAccent}
-              </span>
-            </h1>
+              <h1 className="font-display text-6xl leading-[0.88] tracking-[-0.035em] sm:text-7xl md:text-8xl lg:text-[9rem]">
+                {aboutContent.title}
+                <br />
+                <span className="italic text-gold">
+                  {aboutContent.titleAccent}
+                </span>
+              </h1>
 
-            <div
-              className="
-                mt-10
-                grid grid-cols-1
-                gap-8
-                lg:grid-cols-[1fr_0.55fr]
-                lg:items-end
-              "
-            >
-              <p
-                className="
-                  max-w-2xl
-                  font-body text-base
-                  leading-8
-                  text-foreground-muted
-                  sm:text-lg
-                "
-              >
+              <p className="mt-8 max-w-2xl text-sm leading-7 text-foreground-muted sm:text-base">
                 {aboutContent.description}
               </p>
-
-              <div className="lg:justify-self-end">
-                <div className="flex items-center gap-4">
-                  <GoldDivider width="medium" />
-
-                  <span
-                    className="
-                      font-body text-[9px]
-                      font-semibold uppercase
-                      tracking-[0.18em]
-                      text-foreground-subtle
-                    "
-                  >
-                    Islamabad · Pakistan
-                  </span>
-                </div>
-              </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
+
+        <div className="pointer-events-none absolute -right-20 bottom-0 hidden font-display text-[18rem] leading-none text-white/[0.015] lg:block">
+          T
+        </div>
       </section>
 
       {/* Story */}
       <section className="section-padding">
         <Container>
-          <div
-            className="
-              grid grid-cols-1
-              gap-12
-              lg:grid-cols-[1fr_0.8fr]
-              lg:items-center
-              lg:gap-24
-            "
-          >
-            <div
-              className="
-                relative
-                overflow-hidden
-                rounded-[1.5rem]
-                border border-border
-                bg-surface
-              "
-            >
-              <div className="aspect-[4/5]">
+          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
+            <Reveal>
+              <div className="tavern-image-wrap relative aspect-[4/5] overflow-hidden rounded-xl border border-border">
                 <Image
                   src={aboutContent.image}
-                  alt="Warm atmospheric interior of Tavern"
+                  alt="Warm interior of Tavern"
                   fill
-                  sizes="
-                    (max-width: 1024px) 100vw,
-                    55vw
-                  "
-                  className="
-                    object-cover
-                    transition-transform
-                    duration-1000
-                    hover:scale-[1.03]
-                  "
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
                 />
+
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               </div>
+            </Reveal>
 
-              <div
-                className="
-                  pointer-events-none
-                  absolute inset-0
-                  bg-gradient-to-t
-                  from-background/35
-                  via-transparent
-                  to-transparent
-                "
-              />
+            <Reveal delay={0.12}>
+              <div>
+                <div className="eyebrow mb-6">
+                  Why Tavern
+                </div>
 
-              <div
-                className="
-                  absolute bottom-6 left-6
-                  flex items-center gap-3
-                  sm:bottom-8 sm:left-8
-                "
-              >
-                <span
-                  className="
-                    font-body text-[9px]
-                    font-semibold uppercase
-                    tracking-[0.18em]
-                    text-white/70
-                  "
-                >
-                  Since 2018
-                </span>
+                <h2 className="font-display text-5xl leading-[0.92] tracking-[-0.025em] sm:text-6xl">
+                  A place to
+                  <br />
+                  <span className="italic text-gold">
+                    settle in.
+                  </span>
+                </h2>
 
-                <span className="h-px w-8 bg-gold" />
-              </div>
-            </div>
+                <GoldDivider width="medium" className="my-8" />
 
-            <div>
-              <div className="eyebrow">
-                Our Story
-              </div>
-
-              <h2
-                className="
-                  mt-6
-                  font-display
-                  text-5xl leading-[0.9]
-                  tracking-[-0.03em]
-                  sm:text-6xl
-                  lg:text-7xl
-                "
-              >
-                A room made
-                <br />
-                <span className="italic text-gold">
-                  to linger in.
-                </span>
-              </h2>
-
-              <div className="mt-8 space-y-6">
-                <p
-                  className="
-                    font-body text-sm
-                    leading-7
-                    text-foreground-muted
-                  "
-                >
+                <p className="text-sm leading-7 text-foreground-muted sm:text-base">
                   {aboutContent.description}
                 </p>
 
-                <p
-                  className="
-                    font-body text-sm
-                    leading-7
-                    text-foreground-muted
-                  "
-                >
+                <p className="mt-5 text-sm leading-7 text-foreground-muted sm:text-base">
                   {aboutContent.secondaryDescription}
                 </p>
-              </div>
 
-              <div className="mt-10 flex items-center gap-4">
-                <GoldDivider width="medium" />
-
-                <span
-                  className="
-                    font-body text-[9px]
-                    font-semibold uppercase
-                    tracking-[0.18em]
-                    text-foreground-subtle
-                  "
-                >
-                  Good Food · Great Vibes · Together
-                </span>
+                <div className="mt-9">
+                  <Button href="/menu" variant="outline">
+                    Explore the Menu
+                  </Button>
+                </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>
 
       {/* Philosophy */}
-      <section
-        className="
-          border-y border-border
-          bg-background-soft
-        "
-      >
+      <section className="section-padding-sm border-y border-border bg-surface">
         <Container>
-          <div className="section-padding">
-            <div
-              className="
-                grid grid-cols-1
-                gap-10
-                lg:grid-cols-[0.8fr_1.5fr]
-                lg:gap-20
-              "
-            >
-              <div>
-                <div className="eyebrow">
-                  What We Believe
-                </div>
-
-                <h2
-                  className="
-                    mt-6
-                    font-display
-                    text-5xl leading-[0.9]
-                    tracking-[-0.03em]
-                    sm:text-6xl
-                    lg:text-7xl
-                  "
-                >
-                  Simple ideas.
-                  <br />
-                  <span className="italic text-gold">
-                    Done well.
-                  </span>
-                </h2>
+          <Reveal>
+            <div className="mb-14 max-w-3xl">
+              <div className="eyebrow mb-6">
+                The Tavern Philosophy
               </div>
 
-              <div>
-                {philosophy.map((item) => (
-                  <article
-                    key={item.number}
-                    className="
-                      grid grid-cols-[auto_1fr]
-                      gap-6
-                      border-b border-border
-                      py-8
-                      first:pt-0
-                      last:border-b-0
-                    "
-                  >
-                    <span
-                      className="
-                        pt-1
-                        font-body text-[9px]
-                        font-semibold
-                        tracking-[0.18em]
-                        text-gold
-                      "
-                    >
+              <h2 className="font-display text-5xl leading-[0.92] tracking-[-0.03em] sm:text-6xl lg:text-7xl">
+                Simple things,
+                <br />
+                <span className="italic text-gold">
+                  done properly.
+                </span>
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
+            {philosophy.map((item, index) => (
+              <Reveal
+                key={item.number}
+                delay={index * 0.08}
+                className="h-full"
+              >
+                <div className="h-full bg-surface p-7 sm:p-9 lg:p-10">
+                  <div className="mb-10 flex items-center justify-between">
+                    <span className="font-body text-[10px] font-semibold tracking-[0.18em] text-gold">
                       {item.number}
                     </span>
 
-                    <div>
-                      <h3
-                        className="
-                          font-display text-3xl
-                          leading-none
-                          sm:text-4xl
-                        "
-                      >
-                        {item.title}
-                      </h3>
+                    <GoldDivider width="small" />
+                  </div>
 
-                      <p
-                        className="
-                          mt-4 max-w-xl
-                          font-body text-sm
-                          leading-7
-                          text-foreground-muted
-                        "
-                      >
-                        {item.description}
-                      </p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
+                  <h3 className="font-display text-3xl tracking-[-0.02em] sm:text-4xl">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-4 text-sm leading-7 text-foreground-muted">
+                    {item.description}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>
@@ -352,152 +169,84 @@ export function AboutPage() {
       {/* Stats */}
       <section className="section-padding-sm">
         <Container>
-          <div className="border-y border-border">
-            <div
-              className="
-                grid grid-cols-1
-                sm:grid-cols-3
-              "
-            >
+          <Reveal>
+            <div className="grid border-y border-border sm:grid-cols-3">
               {aboutContent.stats.map((stat, index) => (
                 <div
                   key={stat.label}
-                  className={`
-                    px-6 py-10
-                    sm:px-8 sm:py-12
-                    lg:py-14
-                    ${
-                      index !== 0
-                        ? "border-t border-border sm:border-l sm:border-t-0"
-                        : ""
-                    }
-                  `}
+                  className={`px-5 py-9 text-center sm:py-12 ${
+                    index !== 0 ? "border-t border-border sm:border-l sm:border-t-0" : ""
+                  }`}
                 >
-                  <div
-                    className="
-                      font-display
-                      text-6xl leading-none
-                      tracking-[-0.04em]
-                      text-gold
-                      sm:text-7xl
-                    "
-                  >
+                  <div className="font-display text-5xl tracking-[-0.025em] text-gold sm:text-6xl">
                     {stat.value}
                   </div>
 
-                  <div
-                    className="
-                      mt-4
-                      font-body text-[9px]
-                      font-semibold uppercase
-                      tracking-[0.18em]
-                      text-foreground-subtle
-                    "
-                  >
+                  <div className="mt-2 font-body text-[9px] font-semibold uppercase tracking-[0.18em] text-foreground-subtle">
                     {stat.label}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
       {/* CTA */}
-      <section className="section-padding-sm">
+      <section className="pb-24 sm:pb-32">
         <Container>
-          <div
-            className="
-              relative overflow-hidden
-              border border-border
-              px-6 py-14
-              text-center
-              sm:px-10 sm:py-16
-              lg:px-16 lg:py-20
-            "
-          >
-            <div
-              aria-hidden="true"
-              className="
-                pointer-events-none absolute
-                left-1/2 top-1/2
-                size-[450px]
-                -translate-x-1/2
-                -translate-y-1/2
-                rounded-full
-                bg-gold/[0.04]
-                blur-[110px]
-              "
-            />
+          <Reveal>
+            <div className="relative overflow-hidden rounded-xl border border-border bg-surface px-6 py-16 text-center sm:px-10 sm:py-20 lg:py-24">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(201,164,92,0.08),transparent_55%)]" />
 
-            <div className="relative">
-              <div className="eyebrow justify-center">
-                Come See Us
+              <div className="relative z-10">
+                <div className="eyebrow mb-7 justify-center">
+                  Come See For Yourself
+                </div>
+
+                <h2 className="mx-auto max-w-3xl font-display text-5xl leading-[0.92] tracking-[-0.03em] sm:text-6xl lg:text-7xl">
+                  Good food.
+                  <br />
+                  <span className="italic text-gold">
+                    Good company.
+                  </span>
+                </h2>
+
+                <p className="mx-auto mt-6 max-w-lg text-sm leading-7 text-foreground-muted">
+                  There is always room at the Tavern.
+                </p>
+
+                <div className="mt-9">
+                  <Button href="/reservation">
+                    Book a Table
+                  </Button>
+                </div>
               </div>
-
-              <h2
-                className="
-                  mx-auto mt-6 max-w-3xl
-                  font-display
-                  text-5xl leading-[0.9]
-                  tracking-[-0.03em]
-                  sm:text-6xl
-                  lg:text-7xl
-                "
-              >
-                There&apos;s always
-                <br />
-                <span className="italic text-gold">
-                  room at the Tavern.
-                </span>
-              </h2>
-
-              <p
-                className="
-                  mx-auto mt-6 max-w-md
-                  font-body text-sm
-                  leading-7
-                  text-foreground-muted
-                "
-              >
-                Bring your people, pull up a chair,
-                and stay for a while.
-              </p>
-
-              <Link
-                href="/reservation"
-                className="
-                  group mt-8 inline-flex
-                  items-center gap-3
-                  rounded-full
-                  border border-gold
-                  bg-gold
-                  px-6 py-3.5
-                  font-body text-[10px]
-                  font-semibold uppercase
-                  tracking-[0.1em]
-                  text-background
-                  transition-all duration-300
-                  hover:border-gold-light
-                  hover:bg-gold-light
-                "
-              >
-                <span>Book a Table</span>
-
-                <ArrowUpRight
-                  size={15}
-                  strokeWidth={1.75}
-                  className="
-                    transition-transform duration-300
-                    group-hover:translate-x-0.5
-                    group-hover:-translate-y-0.5
-                  "
-                />
-              </Link>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
+
+      {/* Back to top */}
+      <div className="pb-12">
+        <Container>
+          <Reveal>
+            <div className="flex justify-center">
+              <Link
+                href="#top"
+                className="group inline-flex items-center gap-2 font-body text-[9px] font-semibold uppercase tracking-[0.16em] text-foreground-subtle transition-colors duration-300 hover:text-gold"
+              >
+                <ArrowUpRight
+                  size={13}
+                  className="-rotate-45 transition-transform duration-300 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+                Back to top
+              </Link>
+            </div>
+          </Reveal>
+        </Container>
+      </div>
     </main>
   );
 }

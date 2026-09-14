@@ -1,7 +1,6 @@
 "use client";
 
-import { FormEvent } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import {
   ArrowUpRight,
   Clock3,
@@ -10,792 +9,327 @@ import {
   Phone,
 } from "lucide-react";
 
-import { Container } from "@/components/ui/Container";
-import { GoldDivider } from "@/components/ui/GoldDivider";
 import { siteConfig } from "@/data/site";
-
-const hours = [
-  ["Monday", siteConfig.hours.monday],
-  ["Tuesday", siteConfig.hours.tuesday],
-  ["Wednesday", siteConfig.hours.wednesday],
-  ["Thursday", siteConfig.hours.thursday],
-  ["Friday", siteConfig.hours.friday],
-  ["Saturday", siteConfig.hours.saturday],
-  ["Sunday", siteConfig.hours.sunday],
-] as const;
-
-function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  event.preventDefault();
-}
+import { Reveal } from "@/components/motion/Reveal";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
 
 export function ContactPage() {
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+
   return (
-    <main className="min-h-screen bg-background">
+    <main>
       {/* Hero */}
       <section
-        className="
-          relative overflow-hidden
-          border-b border-border
-          pt-36 pb-20
-          sm:pt-40 sm:pb-24
-          lg:pt-48 lg:pb-28
-        "
+        id="top"
+        className="relative overflow-hidden border-b border-border pt-32 pb-24 sm:pt-40 sm:pb-28 lg:pt-48 lg:pb-36"
       >
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none absolute
-            right-[-10%] top-[-25%]
-            size-[650px]
-            rounded-full
-            bg-gold/[0.045]
-            blur-[140px]
-          "
-        />
-
         <Container>
-          <div className="relative max-w-6xl">
-            <div className="eyebrow">
-              Come Say Hello
-            </div>
-
-            <div
-              className="
-                mt-7
-                grid grid-cols-1
-                gap-8
-                lg:grid-cols-[1.35fr_0.65fr]
-                lg:items-end
-              "
-            >
-              <h1
-                className="
-                  font-display
-                  text-6xl leading-[0.86]
-                  tracking-[-0.04em]
-                  sm:text-7xl
-                  md:text-8xl
-                  lg:text-[9rem]
-                "
-              >
-                Find us.
-                <br />
-                <span className="italic text-gold">
-                  Stay awhile.
-                </span>
-              </h1>
-
-              <div className="lg:pb-2">
-                <p
-                  className="
-                    max-w-sm
-                    font-body text-sm
-                    leading-7
-                    text-foreground-muted
-                  "
-                >
-                  Whether you are joining us for dinner,
-                  drinks, or just a quick hello, we would love
-                  to hear from you.
-                </p>
-
-                <div className="mt-7 flex items-center gap-4">
-                  <GoldDivider width="medium" />
-
-                  <span
-                    className="
-                      font-body text-[9px]
-                      font-semibold uppercase
-                      tracking-[0.18em]
-                      text-foreground-subtle
-                    "
-                  >
-                    Islamabad · Pakistan
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Contact details + form */}
-      <section className="section-padding">
-        <Container>
-          <div
-            className="
-              grid grid-cols-1
-              gap-14
-              lg:grid-cols-[0.75fr_1.25fr]
-              lg:gap-24
-            "
-          >
-            {/* Details */}
-            <div>
-              <div className="eyebrow">
+          <Reveal>
+            <div className="max-w-5xl">
+              <div className="eyebrow mb-7">
                 Get In Touch
               </div>
 
-              <h2
-                className="
-                  mt-6
-                  font-display
-                  text-5xl leading-[0.9]
-                  tracking-[-0.03em]
-                  sm:text-6xl
-                "
-              >
-                We&apos;d love to
+              <h1 className="font-display text-6xl leading-[0.88] tracking-[-0.035em] sm:text-7xl md:text-8xl lg:text-[9rem]">
+                Come say
                 <br />
                 <span className="italic text-gold">
-                  hear from you.
+                  hello.
                 </span>
-              </h2>
+              </h1>
 
-              <div className="mt-10 space-y-7">
-                <a
-                  href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-                  className="
-                    group flex items-start gap-4
-                    transition-colors duration-300
-                  "
-                >
-                  <span
-                    className="
-                      flex size-10 shrink-0
-                      items-center justify-center
-                      rounded-full
-                      border border-border
-                      text-gold
-                      transition-all duration-300
-                      group-hover:border-gold
-                      group-hover:bg-gold
-                      group-hover:text-background
-                    "
+              <p className="mt-8 max-w-xl text-sm leading-7 text-foreground-muted sm:text-base">
+                Questions, celebrations, private events, or just
+                looking for a good table? We would love to hear from you.
+              </p>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Contact content */}
+      <section className="section-padding">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            {/* Details */}
+            <Reveal>
+              <div>
+                <div className="eyebrow mb-7">
+                  Find Tavern
+                </div>
+
+                <div className="space-y-7">
+                  <a
+                    href={`tel:${siteConfig.contact.phone}`}
+                    className="group flex gap-4"
                   >
-                    <Phone size={15} strokeWidth={1.5} />
-                  </span>
+                    <Phone
+                      size={18}
+                      strokeWidth={1.5}
+                      className="mt-1 shrink-0 text-gold"
+                      aria-hidden="true"
+                    />
 
-                  <span>
-                    <span
-                      className="
-                        block font-body text-[9px]
-                        font-semibold uppercase
-                        tracking-[0.18em]
-                        text-foreground-subtle
-                      "
-                    >
-                      Call Us
-                    </span>
+                    <div>
+                      <div className="font-body text-[9px] font-semibold uppercase tracking-[0.16em] text-foreground-subtle">
+                        Phone
+                      </div>
 
-                    <span
-                      className="
-                        mt-1 block
-                        font-display text-2xl
-                        text-foreground
-                        transition-colors duration-300
-                        group-hover:text-gold
-                      "
-                    >
-                      {siteConfig.contact.phone}
-                    </span>
-                  </span>
-                </a>
+                      <div className="mt-1 font-display text-xl transition-colors duration-300 group-hover:text-gold">
+                        {siteConfig.contact.phone}
+                      </div>
+                    </div>
+                  </a>
 
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="
-                    group flex items-start gap-4
-                  "
-                >
-                  <span
-                    className="
-                      flex size-10 shrink-0
-                      items-center justify-center
-                      rounded-full
-                      border border-border
-                      text-gold
-                      transition-all duration-300
-                      group-hover:border-gold
-                      group-hover:bg-gold
-                      group-hover:text-background
-                    "
+                  <a
+                    href={`mailto:${siteConfig.contact.email}`}
+                    className="group flex gap-4"
                   >
-                    <Mail size={15} strokeWidth={1.5} />
-                  </span>
+                    <Mail
+                      size={18}
+                      strokeWidth={1.5}
+                      className="mt-1 shrink-0 text-gold"
+                      aria-hidden="true"
+                    />
 
-                  <span>
-                    <span
-                      className="
-                        block font-body text-[9px]
-                        font-semibold uppercase
-                        tracking-[0.18em]
-                        text-foreground-subtle
-                      "
+                    <div>
+                      <div className="font-body text-[9px] font-semibold uppercase tracking-[0.16em] text-foreground-subtle">
+                        Email
+                      </div>
+
+                      <div className="mt-1 font-display text-xl transition-colors duration-300 group-hover:text-gold">
+                        {siteConfig.contact.email}
+                      </div>
+                    </div>
+                  </a>
+
+                  <div className="flex gap-4">
+                    <MapPin
+                      size={18}
+                      strokeWidth={1.5}
+                      className="mt-1 shrink-0 text-gold"
+                      aria-hidden="true"
+                    />
+
+                    <div>
+                      <div className="font-body text-[9px] font-semibold uppercase tracking-[0.16em] text-foreground-subtle">
+                        Address
+                      </div>
+
+                      <div className="mt-1 font-display text-xl">
+                        {siteConfig.location.address}
+                      </div>
+
+                      <div className="mt-1 text-sm text-foreground-muted">
+                        {siteConfig.location.city},{" "}
+                        {siteConfig.location.country}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-10 border-t border-border pt-8">
+                  <div className="flex items-center gap-3">
+                    <a
+                      href={siteConfig.social.instagram}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border font-body text-[9px] font-semibold tracking-[0.08em] transition-all duration-300 hover:border-gold hover:text-gold"
+                      aria-label="Instagram"
                     >
-                      Email
-                    </span>
+                      IG
+                    </a>
 
-                    <span
-                      className="
-                        mt-1 block
-                        font-display text-2xl
-                        text-foreground
-                        transition-colors duration-300
-                        group-hover:text-gold
-                      "
+                    <a
+                      href={siteConfig.social.facebook}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border font-body text-[9px] font-semibold tracking-[0.08em] transition-all duration-300 hover:border-gold hover:text-gold"
+                      aria-label="Facebook"
                     >
-                      {siteConfig.contact.email}
-                    </span>
-                  </span>
-                </a>
-
-                <div className="flex items-start gap-4">
-                  <span
-                    className="
-                      flex size-10 shrink-0
-                      items-center justify-center
-                      rounded-full
-                      border border-border
-                      text-gold
-                    "
-                  >
-                    <MapPin size={15} strokeWidth={1.5} />
-                  </span>
-
-                  <div>
-                    <span
-                      className="
-                        block font-body text-[9px]
-                        font-semibold uppercase
-                        tracking-[0.18em]
-                        text-foreground-subtle
-                      "
-                    >
-                      Find Us
-                    </span>
-
-                    <p
-                      className="
-                        mt-1
-                        font-display text-2xl
-                        leading-tight
-                        text-foreground
-                      "
-                    >
-                      {siteConfig.location.address}
-                      <br />
-                      {siteConfig.location.city},{" "}
-                      {siteConfig.location.country}
-                    </p>
+                      FB
+                    </a>
                   </div>
                 </div>
               </div>
-
-              <div className="mt-10 border-t border-border pt-8">
-                <span
-                  className="
-                    font-body text-[9px]
-                    font-semibold uppercase
-                    tracking-[0.18em]
-                    text-foreground-subtle
-                  "
-                >
-                  Follow Along
-                </span>
-
-                <div className="mt-4 flex gap-3">
-                  <a
-                    href={siteConfig.social.instagram}
-                    aria-label="Instagram"
-                    className="
-                      flex size-10
-                      items-center justify-center
-                      rounded-full
-                      border border-border
-                      text-foreground-muted
-                      transition-all duration-300
-                      hover:border-gold
-                      hover:bg-gold
-                      hover:text-background
-                    "
-                  >
-                    IG
-                  </a>
-
-                  <a
-                    href={siteConfig.social.facebook}
-                    aria-label="Facebook"
-                    className="
-                      flex size-10
-                      items-center justify-center
-                      rounded-full
-                      border border-border
-                      font-body text-[10px]
-                      font-semibold
-                      text-foreground-muted
-                      transition-all duration-300
-                      hover:border-gold
-                      hover:bg-gold
-                      hover:text-background
-                    "
-                  >
-                    FB
-                  </a>
-                </div>
-              </div>
-            </div>
+            </Reveal>
 
             {/* Form */}
-            <div
-              className="
-                rounded-[1rem]
-                border border-border
-                bg-surface
-                p-6
-                sm:p-8
-                lg:p-10
-              "
-            >
-              <div className="mb-8">
-                <span
-                  className="
-                    font-body text-[9px]
-                    font-semibold uppercase
-                    tracking-[0.18em]
-                    text-gold
-                  "
-                >
-                  Send A Message
-                </span>
+            <Reveal delay={0.1}>
+              <div className="rounded-xl border border-border bg-surface p-6 sm:p-9 lg:p-10">
+                {submitted ? (
+                  <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-gold text-gold">
+                      <ArrowUpRight size={20} aria-hidden="true" />
+                    </div>
 
-                <h2
-                  className="
-                    mt-3
-                    font-display text-4xl
-                    leading-none
-                    sm:text-5xl
-                  "
-                >
-                  What&apos;s on your mind?
-                </h2>
+                    <h2 className="font-display text-4xl">
+                      Message received.
+                    </h2>
+
+                    <p className="mt-4 max-w-md text-sm leading-7 text-foreground-muted">
+                      Thanks for reaching out. We will get back to you
+                      as soon as possible.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <div className="eyebrow mb-5">
+                        Send A Message
+                      </div>
+
+                      <h2 className="font-display text-4xl tracking-[-0.02em] sm:text-5xl">
+                        What can we help with?
+                      </h2>
+                    </div>
+
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <label className="block">
+                        <span className="mb-2 block font-body text-[9px] font-semibold uppercase tracking-[0.15em] text-foreground-subtle">
+                          Name
+                        </span>
+
+                        <input
+                          required
+                          name="name"
+                          type="text"
+                          className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none transition-colors duration-300 placeholder:text-foreground-subtle focus:border-gold"
+                          placeholder="Your name"
+                        />
+                      </label>
+
+                      <label className="block">
+                        <span className="mb-2 block font-body text-[9px] font-semibold uppercase tracking-[0.15em] text-foreground-subtle">
+                          Email
+                        </span>
+
+                        <input
+                          required
+                          name="email"
+                          type="email"
+                          className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none transition-colors duration-300 placeholder:text-foreground-subtle focus:border-gold"
+                          placeholder="you@example.com"
+                        />
+                      </label>
+                    </div>
+
+                    <label className="block">
+                      <span className="mb-2 block font-body text-[9px] font-semibold uppercase tracking-[0.15em] text-foreground-subtle">
+                        Subject
+                      </span>
+
+                      <input
+                        required
+                        name="subject"
+                        type="text"
+                        className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none transition-colors duration-300 placeholder:text-foreground-subtle focus:border-gold"
+                        placeholder="How can we help?"
+                      />
+                    </label>
+
+                    <label className="block">
+                      <span className="mb-2 block font-body text-[9px] font-semibold uppercase tracking-[0.15em] text-foreground-subtle">
+                        Message
+                      </span>
+
+                      <textarea
+                        required
+                        name="message"
+                        rows={6}
+                        className="w-full resize-none rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none transition-colors duration-300 placeholder:text-foreground-subtle focus:border-gold"
+                        placeholder="Tell us a little more..."
+                      />
+                    </label>
+
+                    <Button type="submit">
+                      Send Message
+                    </Button>
+                  </form>
+                )}
               </div>
-
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-6"
-              >
-                <div
-                  className="
-                    grid grid-cols-1
-                    gap-6
-                    sm:grid-cols-2
-                  "
-                >
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="
-                        mb-2 block
-                        font-body text-[9px]
-                        font-semibold uppercase
-                        tracking-[0.16em]
-                        text-foreground-subtle
-                      "
-                    >
-                      Your Name
-                    </label>
-
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      placeholder="John Doe"
-                      className="
-                        w-full
-                        border-b border-border
-                        bg-transparent
-                        px-0 py-3
-                        font-body text-sm
-                        text-foreground
-                        placeholder:text-foreground-subtle
-                        outline-none
-                        transition-colors duration-300
-                        focus:border-gold
-                      "
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="
-                        mb-2 block
-                        font-body text-[9px]
-                        font-semibold uppercase
-                        tracking-[0.16em]
-                        text-foreground-subtle
-                      "
-                    >
-                      Email Address
-                    </label>
-
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="you@example.com"
-                      className="
-                        w-full
-                        border-b border-border
-                        bg-transparent
-                        px-0 py-3
-                        font-body text-sm
-                        text-foreground
-                        placeholder:text-foreground-subtle
-                        outline-none
-                        transition-colors duration-300
-                        focus:border-gold
-                      "
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="
-                      mb-2 block
-                      font-body text-[9px]
-                      font-semibold uppercase
-                      tracking-[0.16em]
-                      text-foreground-subtle
-                    "
-                  >
-                    Subject
-                  </label>
-
-                  <select
-                    id="subject"
-                    name="subject"
-                    defaultValue=""
-                    className="
-                      w-full
-                      border-b border-border
-                      bg-transparent
-                      px-0 py-3
-                      font-body text-sm
-                      text-foreground
-                      outline-none
-                      transition-colors duration-300
-                      focus:border-gold
-                    "
-                  >
-                    <option
-                      value=""
-                      disabled
-                      className="bg-surface"
-                    >
-                      Choose a subject
-                    </option>
-                    <option
-                      value="general"
-                      className="bg-surface"
-                    >
-                      General Enquiry
-                    </option>
-                    <option
-                      value="private-dining"
-                      className="bg-surface"
-                    >
-                      Private Dining
-                    </option>
-                    <option
-                      value="events"
-                      className="bg-surface"
-                    >
-                      Events
-                    </option>
-                    <option
-                      value="feedback"
-                      className="bg-surface"
-                    >
-                      Feedback
-                    </option>
-                  </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="
-                      mb-2 block
-                      font-body text-[9px]
-                      font-semibold uppercase
-                      tracking-[0.16em]
-                      text-foreground-subtle
-                    "
-                  >
-                    Message
-                  </label>
-
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    placeholder="Tell us a little more..."
-                    className="
-                      w-full resize-none
-                      border-b border-border
-                      bg-transparent
-                      px-0 py-3
-                      font-body text-sm
-                      leading-6
-                      text-foreground
-                      placeholder:text-foreground-subtle
-                      outline-none
-                      transition-colors duration-300
-                      focus:border-gold
-                    "
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="
-                    group inline-flex
-                    w-full items-center
-                    justify-center gap-3
-                    rounded-full
-                    border border-gold
-                    bg-gold
-                    px-6 py-4
-                    font-body text-[10px]
-                    font-semibold uppercase
-                    tracking-[0.1em]
-                    text-background
-                    transition-all duration-300
-                    hover:border-gold-light
-                    hover:bg-gold-light
-                  "
-                >
-                  <span>Send Message</span>
-
-                  <ArrowUpRight
-                    size={15}
-                    strokeWidth={1.75}
-                    className="
-                      transition-transform duration-300
-                      group-hover:translate-x-0.5
-                      group-hover:-translate-y-0.5
-                    "
-                  />
-                </button>
-              </form>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>
 
       {/* Hours */}
-      <section
-        className="
-          border-y border-border
-          bg-background-soft
-        "
-      >
+      <section className="section-padding-sm border-y border-border bg-surface">
         <Container>
-          <div className="section-padding-sm">
-            <div
-              className="
-                grid grid-cols-1
-                gap-10
-                lg:grid-cols-[0.7fr_1.3fr]
-                lg:gap-20
-              "
-            >
+          <Reveal>
+            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
               <div>
-                <div className="eyebrow">
+                <div className="eyebrow mb-6">
                   Opening Hours
                 </div>
 
-                <h2
-                  className="
-                    mt-6
-                    font-display
-                    text-5xl leading-[0.9]
-                    tracking-[-0.03em]
-                    sm:text-6xl
-                  "
-                >
-                  Come by
+                <h2 className="font-display text-5xl leading-[0.92] sm:text-6xl">
+                  See you
                   <br />
                   <span className="italic text-gold">
-                    anytime.
+                    soon.
                   </span>
                 </h2>
-
-                <div className="mt-6 flex items-center gap-3">
-                  <Clock3
-                    size={15}
-                    strokeWidth={1.5}
-                    className="text-gold"
-                  />
-
-                  <span
-                    className="
-                      font-body text-[9px]
-                      font-semibold uppercase
-                      tracking-[0.16em]
-                      text-foreground-subtle
-                    "
-                  >
-                    Kitchen closes 30 minutes before closing
-                  </span>
-                </div>
               </div>
 
-              <div className="border-t border-border">
-                {hours.map(([day, time]) => (
+              <div className="divide-y divide-border border-y border-border">
+                {Object.entries(siteConfig.hours).map(([day, hours]) => (
                   <div
                     key={day}
-                    className="
-                      flex items-center
-                      justify-between
-                      gap-6
-                      border-b border-border
-                      py-4
-                    "
+                    className="flex items-center justify-between py-4"
                   >
-                    <span
-                      className="
-                        font-display text-2xl
-                        text-foreground
-                        sm:text-3xl
-                      "
-                    >
+                    <span className="font-body text-xs font-semibold capitalize tracking-[0.08em] text-foreground-muted">
                       {day}
                     </span>
 
-                    <span
-                      className="
-                        text-right
-                        font-body text-[10px]
-                        uppercase
-                        tracking-[0.08em]
-                        text-foreground-muted
-                      "
-                    >
-                      {time}
+                    <span className="font-body text-xs text-foreground">
+                      {hours}
                     </span>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
       {/* Reservation CTA */}
-      <section className="section-padding-sm">
+      <section className="py-24 sm:py-32">
         <Container>
-          <div
-            className="
-              relative overflow-hidden
-              border border-border
-              px-6 py-14
-              text-center
-              sm:px-10 sm:py-16
-              lg:px-16 lg:py-20
-            "
-          >
-            <div
-              aria-hidden="true"
-              className="
-                pointer-events-none absolute
-                left-1/2 top-1/2
-                size-[450px]
-                -translate-x-1/2
-                -translate-y-1/2
-                rounded-full
-                bg-gold/[0.04]
-                blur-[110px]
-              "
-            />
+          <Reveal>
+            <div className="flex flex-col items-start justify-between gap-8 border-b border-border pb-12 sm:flex-row sm:items-end">
+              <div>
+                <div className="eyebrow mb-5">
+                  Prefer A Table?
+                </div>
 
-            <div className="relative">
-              <div className="eyebrow justify-center">
-                Your Table Awaits
+                <h2 className="font-display text-4xl sm:text-5xl">
+                  Make a reservation.
+                </h2>
               </div>
 
-              <h2
-                className="
-                  mt-6
-                  font-display
-                  text-5xl leading-[0.9]
-                  tracking-[-0.03em]
-                  sm:text-6xl
-                  lg:text-7xl
-                "
-              >
-                Rather talk over
-                <br />
-                <span className="italic text-gold">
-                  dinner?
-                </span>
-              </h2>
-
-              <p
-                className="
-                  mx-auto mt-6
-                  max-w-md
-                  font-body text-sm
-                  leading-7
-                  text-foreground-muted
-                "
-              >
-                Skip the form and come see us.
-                Reserve a table and let&apos;s make an
-                evening of it.
-              </p>
-
-              <Link
-                href="/reservation"
-                className="
-                  group mt-8 inline-flex
-                  items-center gap-3
-                  rounded-full
-                  border border-gold
-                  bg-gold
-                  px-6 py-3.5
-                  font-body text-[10px]
-                  font-semibold uppercase
-                  tracking-[0.1em]
-                  text-background
-                  transition-all duration-300
-                  hover:border-gold-light
-                  hover:bg-gold-light
-                "
-              >
-                <span>Book a Table</span>
-
-                <ArrowUpRight
-                  size={15}
-                  strokeWidth={1.75}
-                  className="
-                    transition-transform duration-300
-                    group-hover:translate-x-0.5
-                    group-hover:-translate-y-0.5
-                  "
-                />
-              </Link>
+              <Button href="/reservation">
+                Book a Table
+              </Button>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
+
+      <div className="pb-12">
+        <Container>
+          <div className="flex justify-center">
+            <a
+              href="#top"
+              className="font-body text-[9px] font-semibold uppercase tracking-[0.16em] text-foreground-subtle transition-colors duration-300 hover:text-gold"
+            >
+              Back to top
+            </a>
+          </div>
+        </Container>
+      </div>
     </main>
   );
 }
