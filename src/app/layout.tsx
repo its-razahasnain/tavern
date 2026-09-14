@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   creator: "Tavern",
 
   icons: {
-    icon: "/icon.svg",
+    icon: "/favicon.ico",
   },
 
   alternates: {
